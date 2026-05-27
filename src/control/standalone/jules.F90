@@ -191,6 +191,7 @@ DO    !  timestep
   !-----------------------------------------------------------------------------
   ! Call the main model science routine
   !-----------------------------------------------------------------------------
+  ! DEPENDS ON: control
   CALL control(                                                                &
   !   Scalar arguments (INTENT IN)
       timestep_number,                                                         &
