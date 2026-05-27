@@ -272,6 +272,7 @@ IF (timesteps_in_day > nsdmax)                                                 &
 ! confirmed. Unconfirmed configurations return a WARNING message, but do not
 ! break the run.
 !-----------------------------------------------------------------------------
+! DEPENDS ON: imogen_check
 CALL imogen_check(                                                             &
   c_emissions, include_co2, include_non_co2_radf, land_feed_co2,               &
   land_feed_ch4, ocean_feed, change_metdata_method, l_change_metdata)

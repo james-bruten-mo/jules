@@ -273,6 +273,7 @@ CALL init_soil(nml_dir)
 CALL init_vegetation(nml_dir)
 
 ! Initialise irrigation options
+! DEPENDS ON: init_irrigation
 CALL init_irrigation(nml_dir)
 
 ! Initialise vegetation N uptake model options

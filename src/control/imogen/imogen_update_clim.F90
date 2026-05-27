@@ -197,22 +197,26 @@ IF (l_change_metdata) THEN
 
     ! Calculate the CO2 forcing
     IF (include_co2) THEN
+      ! DEPENDS ON: radf_co2
       CALL radf_co2(imgn_vars%co2_ppmv(1), co2_init_ppmv, q2co2, q_co2)
     END IF
 
     ! Calculate the non CO2 forcing
     IF (include_non_co2_radf) THEN
+      ! DEPENDS ON: radf_non_co2
       CALL radf_non_co2(                                                       &
         current_time%year,imgn_vars%q_non_co2(1),nyr_non_co2,file_non_co2_radf)
     END IF
 
     IF (land_feed_ch4) THEN
+      ! DEPENDS ON: radf_ch4
       CALL radf_ch4(imgn_vars%ch4_ppbv(1), q_ch4)
     END IF
     ! Calculate the total forcing
     q_total = q_co2 + imgn_vars%q_non_co2(1) + q_ch4
 
     ! calculate the global and land temperature change using analogue model
+    ! DEPENDS ON: delta_temp
     CALL delta_temp(n_olevs, f_ocean, kappa_o, lambda_l, lambda_o, mu, q_total,&
         dtemp_l, imgn_vars%dtemp_o, imgn_vars%dtemp_g(1))
     imgn_vars%dtemp_g(1) = dtemp_l  !ejb sort this
@@ -220,11 +224,13 @@ IF (l_change_metdata) THEN
 
   IF (change_metdata_method == 1 .OR. change_metdata_method == 3 ) THEN
     ! calculate the new met data based on global temperature change
+    ! DEPENDS ON: pattern_scaling
     CALL pattern_scaling(land_pts, mm, imgn_vars%dtemp_g(1), imgn_drive, ainfo)
   END IF
 
   IF (change_metdata_method == 2) THEN
     ! Option where anomalies are prescribed directly not using the analogue model
+    ! DEPENDS ON: drdat
     CALL drdat(current_time%year)
   END IF
 
@@ -241,6 +247,7 @@ ELSE  ! l_change_metdata=False
 END IF         ! End of where anomalies are calculated
 
 ! Now calculate the subdaily values of the driving data.
+! DEPENDS ON: clim_calc
 CALL clim_calc(land_pts, mm, md, nsdmax, progs%seed_rain, imgn_drive, ainfo)
 
 ! Compute current land carbon as dctot_co2 for use in imogen_update_carb.

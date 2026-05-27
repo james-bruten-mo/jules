@@ -271,6 +271,7 @@ DO  n = 1,ncpft
     nonyield_diag_cpft(l,n)   = 0.0
 
     IF ( NINT(dvi(l,n)) == -2 .AND. crop_call == 0 ) THEN
+      ! DEPENDS ON: sow
       CALL sow(n, sm_levels, t_soil_soilt(l,m,:), sthu_soilt(l,m,:),           &
                smvcst_soilt(l,m,:),                                            &
                smvccl_soilt(l,m,:), dphotdt(i), sow_date_cpft(l,n),            &

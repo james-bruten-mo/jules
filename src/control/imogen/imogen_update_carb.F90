@@ -124,6 +124,7 @@ IF (land_feed_co2) THEN
   CALL gather_land_field(darea, global_data_darea)
 
   IF ( is_master_task() ) THEN
+    ! DEPENDS ON: diffcarb_land_co2
     CALL diffcarb_land_co2(global_land_pts, imgn_vars%d_land_atmos_co2(1),     &
               global_data_darea, global_data_dctot)
     global_data_land_atmos(:) = imgn_vars%d_land_atmos_co2(1)
@@ -169,6 +170,7 @@ IF (include_co2 .AND. c_emissions .AND. l_change_metdata                       &
 
   IF (ocean_feed) THEN
     ! Update with ocean feedbacks if required
+    ! DEPENDS ON: ocean_co2
     CALL ocean_co2(                                                            &
       current_time%year - initial_co2_ch4_year+1,                              &
       1,imgn_vars%co2_ppmv(1),co2_init_ppmv,imgn_vars%dtemp_o(1),              &
@@ -223,6 +225,7 @@ IF (land_feed_ch4) THEN
   ! compared to a reference flux which is applicable to the atmospheric
   ! baseline ch4 concentration.
   IF ( is_master_task() ) THEN
+    ! DEPENDS ON: diffcarb_land_ch4
     CALL diffcarb_land_ch4(global_land_pts, imgn_vars%d_land_atmos_ch4(1),     &
                 global_data_darea, global_data_dctot)
     global_data_land_atmos(:) = imgn_vars%d_land_atmos_ch4(1)
@@ -235,6 +238,7 @@ IF (land_feed_ch4) THEN
   ! Update atmospheric methane at end of year. This accounts for the change in
   ! methane global flux from natural source from a reference amount, and the
   ! change in decay rate due to a changed atmospheric concentration
+  ! DEPENDS ON: diff_atmos_ch4
   CALL diff_atmos_ch4(imgn_vars%d_land_atmos_ch4(1), imgn_vars%ch4_ppbv(1))
 
   IF ( ALLOCATED(global_data_dctot) )      DEALLOCATE(global_data_dctot)
