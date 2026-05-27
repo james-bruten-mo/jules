@@ -1,4 +1,9 @@
 #if !defined(UM_JULES)
+
+MODULE control_mod
+
+IMPLICIT NONE
+
 SUBROUTINE control (                                                           &
 !   Scalar arguments (INTENT IN)
     timestep_number,                                                           &
@@ -912,4 +917,6 @@ CALL surf_couple_extra(                                                        &
   )
 
 END SUBROUTINE control
+
+END MODULE control_mod
 #endif
