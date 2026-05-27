@@ -164,6 +164,7 @@ END DO
 DO im = 1,mm                ! Loop over the months
   DO id = 1,md              ! Loop over the days
 
+    ! DEPENDS ON: day_calc
     CALL day_calc(                                                             &
       land_pts,swdown_daily(:,im,id),precip_daily(:,im,id),                    &
       tl1_daily(:,im,id),diurnal_tl1_daily(:,im,id),lwdown_daily(:,im,id),     &

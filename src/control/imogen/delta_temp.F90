@@ -162,6 +162,7 @@ DO i = 1,timesteps
   pdirchlet = ((1.0 - f_ocean) * lambda_l * mu) / (f_ocean * kappa_o)          &
     + (lambda_o / kappa_o)
 
+  ! DEPENDS ON: invert
   CALL invert(                                                                 &
     dtemp_o_old,dtemp_o_new,pdirchlet,lambda_old,lambda_new,                   &
     r1,r2,dz_top,n_olevs)
