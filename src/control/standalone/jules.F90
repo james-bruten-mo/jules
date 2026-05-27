@@ -10,8 +10,6 @@ PROGRAM jules
 
 !$ USE omp_lib, ONLY: omp_get_max_threads
 
-USe control_mod, ONLY: control
-
 USE init_mod, ONLY: init
 
 USE io_constants, ONLY: max_file_name_len

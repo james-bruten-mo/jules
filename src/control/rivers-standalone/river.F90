@@ -9,8 +9,6 @@ PROGRAM river
 
 !$ USE omp_lib
 
-USE control_mod, ONLY: control
-
 USE init_mod, ONLY: init
 
 USE next_time_mod, ONLY: next_time
