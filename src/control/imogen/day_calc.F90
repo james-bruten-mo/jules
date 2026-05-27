@@ -287,6 +287,7 @@ IF (timesteps_in_day >= 2) THEN
     ! these being large scale rain, convective rain, large scale snow,
     ! convective snow. Call random number generator for different durations.
     !-----------------------------------------------------------------------
+    ! DEPENDS ON: rndm
     CALL rndm(random_num_sd,seed_rain)
 
     !-----------------------------------------------------------------------
