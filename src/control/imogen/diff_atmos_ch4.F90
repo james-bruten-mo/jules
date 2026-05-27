@@ -130,6 +130,6 @@ END IF
 
 RETURN
 
-END
+END SUBROUTINE diff_atmos_ch4
 
 #endif
