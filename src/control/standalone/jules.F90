@@ -167,6 +167,7 @@ DO    !  timestep
   !-----------------------------------------------------------------------------
   IF ( l_imogen .AND. start_of_year ) THEN
     CALL update_prescribed_variables()   ! read in required variables
+    ! DEPENDS ON: imogen_update_clim
     CALL imogen_update_clim(progs, imgn_drive, imgn_vars, ainfo)
   END IF
 
@@ -217,6 +218,7 @@ DO    !  timestep
   !-----------------------------------------------------------------------------
   ! Update IMOGEN carbon if required
   !-----------------------------------------------------------------------------
+  ! DEPENDS ON: imogen_update_carb
   IF ( l_imogen .AND. end_of_year ) CALL imogen_update_carb(progs, imgn_vars)
 
   !-----------------------------------------------------------------------------

@@ -284,6 +284,7 @@ DO  n = 1,ncpft
     dvi_prev1 = dvi(l,n)
 
     IF ( dvi(l,n) >= -1.0 .AND. dvi(l,n) < 0.0 ) THEN
+      ! DEPENDS ON: emerge
       CALL emerge(n, t_surft(l,n + nnpft), dvi(l,n))
       ! On the timestep where crop emerges, DVI is incremented twice
       ! This should be changed (kept in for the moment for bit
@@ -296,6 +297,7 @@ DO  n = 1,ncpft
     dvi_prev2 = dvi(l,n)
 
     IF ( dvi(l,n) >= 0.0 ) THEN
+      ! DEPENDS ON: develop
       CALL develop(n, t_surft(l,n + nnpft), phot(i), tt_veg_cpft(l,n),         &
                    tt_rep_cpft(l,n), dvi(l,n))
     END IF
@@ -318,6 +320,7 @@ DO  n = 1,ncpft
     !-------------------------------------------------------------------------
     IF ( dvi(l,n) >= initial_c_dvi(n) ) THEN
       IF (crop_call == 0) THEN
+        ! DEPENDS ON: partition
         CALL partition(n, npp_ft_acc(l,n + nnpft),                             &
                        dvi(l,n), rootc(l,n), harvc(l,n),                       &
                        reservec(l,n), nonyield_diag_cpft(l,n),                 &

@@ -298,6 +298,7 @@ CALL init_water_resources(nml_dir)
 
 ! Initialise two-tile urban schemes (not ancillary data) and must be called
 ! after init_radiation
+!DEPENDS ON: init_urban
 CALL init_urban(nml_dir)
 
 ! Initialise science fixes
@@ -361,6 +362,7 @@ END IF
 CALL init_params(nml_dir,progs,land_pts,nsurft,nnpft,npft,nmasst)
 
 ! Initialise fire module
+! DEPENDS ON: init_fire
 CALL init_fire(nml_dir,ainfo%land_index)
 
 ! Initialise the metstats module
@@ -372,6 +374,7 @@ CALL init_drive(nml_dir,ainfo,progs_data)
 ! Initialise IMOGEN
 ! Contains allocation of progs_data%seed_rain - hence passing in the data type
 IF ( l_imogen ) THEN
+  ! DEPENDS ON: init_imogen
   CALL init_imogen(nml_dir,progs_data, trifctltype, imgn_drive, imgn_vars,     &
                    ainfo)
 END IF
@@ -380,6 +383,7 @@ END IF
 CALL prognostics_assoc(progs,progs_data)
 
 ! Initialise other prescribed data
+! DEPENDS ON: init_prescribed_data
 CALL init_prescribed_data(nml_dir)
 
 ! Initialise the model prognostics
@@ -404,6 +408,7 @@ CALL set_sf_diag_switches
 CALL allocate_sf_diags
 
 ! Further initialisation of variables.
+! DEPENDS ON: init_vars_tmp
 CALL init_vars_tmp(crop_vars,psparms,toppdm,ainfo,trif_vars, aerotype,         &
                    progs,trifctltype, coast, jules_vars, forcing)
 
