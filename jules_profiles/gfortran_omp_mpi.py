@@ -18,5 +18,4 @@ compile_profile = {
     "fortran_compile_flags_override": {
         Path("src/io/dump/read_dump_mod.F90"): fortran_compile_flags_common + ["-fallow-argument-mismatch"]
     },
-    "unkown_key": "unknown"
 }
