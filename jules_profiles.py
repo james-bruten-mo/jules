@@ -26,6 +26,9 @@ class gfortran_mpi_omp(CompileProfile):
             "-fopenmp",
         ]
 
+    def argument_type_mismatch(self):
+        return "-fallow-argument-mismatch"
+
     def fortran_compile_flags_override(self) -> dict[Path, list[str]]:
         return {
             Path("src/io/dump/read_dump_mod.F90"): self.fortran_compile_flags_common() + ["-fallow-argument-mismatch"],
