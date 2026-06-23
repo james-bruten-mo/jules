@@ -8,6 +8,13 @@
 !
 ! [Met Office Ref SC0237]
 !******************************COPYRIGHT**************************************
+
+MODULE day_calc_mod
+
+IMPLICIT NONE
+
+CONTAINS
+
 SUBROUTINE day_calc(                                                           &
   land_pts, swdown_daily, precip_daily, tl1_daily, diurnal_tl1_daily,          &
   lwdown_daily, pstar_daily, wind_daily, ql1_daily, swdown_subdaily,           &
@@ -469,4 +476,5 @@ END IF ! End of loop to chose whether sub-daily is required
 RETURN
 
 END SUBROUTINE day_calc
+END MODULE day_calc_mod
 #endif

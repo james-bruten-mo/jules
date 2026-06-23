@@ -18,6 +18,7 @@ USE imgn_drive_mod, ONLY: imgn_drive_type
 USE ancil_info, ONLY: ainfo_type
 USE theta_field_sizes, ONLY: t_i_length
 USE imogen_run, ONLY: l_daily_metdata_climatol
+USE day_calc_mod, ONLY: day_calc
 
 IMPLICIT NONE
 
@@ -164,7 +165,6 @@ END DO
 DO im = 1,mm                ! Loop over the months
   DO id = 1,md              ! Loop over the days
 
-    ! DEPENDS ON: day_calc
     CALL day_calc(                                                             &
       land_pts,swdown_daily(:,im,id),precip_daily(:,im,id),                    &
       tl1_daily(:,im,id),diurnal_tl1_daily(:,im,id),lwdown_daily(:,im,id),     &
