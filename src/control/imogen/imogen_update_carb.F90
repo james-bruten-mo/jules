@@ -46,9 +46,9 @@ USE diffcarb_land_co2_mod, ONLY: diffcarb_land_co2
 
 USE ocean_co2_mod, ONLY: ocean_co2
 
-USE diffcarb_land_ch4, ONLY: diffcarb_land_ch4
+USE diffcarb_land_ch4_mod, ONLY: diffcarb_land_ch4
 
-USE diff_atmos_ch4, ONLY: diff_atmos_ch4
+USE diff_atmos_ch4_mod, ONLY: diff_atmos_ch4
 
 USE logging_mod, ONLY: log_fatal
 
