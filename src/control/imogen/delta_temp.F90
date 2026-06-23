@@ -11,6 +11,8 @@
 SUBROUTINE delta_temp(                                                         &
   n_olevs,f_ocean,kappa_o,lambda_l,lambda_o,mu,dqradf,dtemp_l,dtemp_o, dtemp_g)
 
+USE invert_mod, ONLY: invert
+
 USE veg_param, ONLY: secs_per_360days
 
 USE jules_print_mgr, ONLY: jules_message, jules_print
@@ -162,7 +164,6 @@ DO i = 1,timesteps
   pdirchlet = ((1.0 - f_ocean) * lambda_l * mu) / (f_ocean * kappa_o)          &
     + (lambda_o / kappa_o)
 
-  ! DEPENDS ON: invert
   CALL invert(                                                                 &
     dtemp_o_old,dtemp_o_new,pdirchlet,lambda_old,lambda_new,                   &
     r1,r2,dz_top,n_olevs)

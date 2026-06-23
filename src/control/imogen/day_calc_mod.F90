@@ -31,6 +31,7 @@ USE datetime_utils_mod, ONLY: day_of_year, days_in_year
 USE model_grid_mod, ONLY: latitude, longitude
 USE theta_field_sizes, ONLY: t_i_length, t_j_length
 USE jules_fields_mod, ONLY: ainfo
+USE rndm_mod, ONLY: rndm
 ! USE update_mod, ONLY: t_for_snow, t_for_con_rain
 ! ejb add trap in imogen nml to ensure they are read
 ! not activated in #1322 because metadata is a nightmare
@@ -294,7 +295,6 @@ IF (timesteps_in_day >= 2) THEN
     ! these being large scale rain, convective rain, large scale snow,
     ! convective snow. Call random number generator for different durations.
     !-----------------------------------------------------------------------
-    ! DEPENDS ON: rndm
     CALL rndm(random_num_sd,seed_rain)
 
     !-----------------------------------------------------------------------
