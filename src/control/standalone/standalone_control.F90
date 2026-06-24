@@ -6,7 +6,7 @@ IMPLICIT NONE
 
 CONTAINS
 
-SUBROUTINE standalone_control (                                                           &
+SUBROUTINE standalone_control (                                                &
 !   Scalar arguments (INTENT IN)
     timestep_number,                                                           &
     u_1_ij, v_1_ij,                                                            &

@@ -143,7 +143,7 @@ DO    !  timestep
   !-----------------------------------------------------------------------------
   ! Call the main model science routine
   !-----------------------------------------------------------------------------
-  CALL rivers_control(                                                                &
+  CALL rivers_control(                                                         &
      !TYPES containing field data (IN OUT)
      psparms, ainfo, progs, fluxes, rivers, wtrac_jls )
 

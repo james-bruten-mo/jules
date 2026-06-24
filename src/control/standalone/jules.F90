@@ -195,7 +195,7 @@ DO    !  timestep
   !-----------------------------------------------------------------------------
   ! Call the main model science routine
   !-----------------------------------------------------------------------------
-  CALL standalone_control(                                                                &
+  CALL standalone_control(                                                     &
   !   Scalar arguments (INTENT IN)
       timestep_number,                                                         &
   !   Forcing (INTENT IN)

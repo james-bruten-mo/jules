@@ -20,7 +20,7 @@ CHARACTER(LEN=*), PARAMETER, PRIVATE :: ModuleName='RIVERS_CONTROL_MOD'
 
 CONTAINS
 
-SUBROUTINE rivers_control (                                                           &
+SUBROUTINE rivers_control (                                                    &
     !TYPES containing field data (IN OUT)
     psparms, ainfo, progs, fluxes, river, wtrac_jls )
 
