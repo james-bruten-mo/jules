@@ -54,7 +54,7 @@ INTEGER, INTENT(IN) ::                                                         &
            ! Seeding number for subdaily rainfall.
 
 TYPE(imgn_drive_type), INTENT(IN OUT) :: imgn_drive
-TYPE(ainfo_type), INTENT(IN OUT) :: ainfo
+TYPE(ainfo_type), INTENT(IN) :: ainfo
 
 ! Create "subdaily" values of the arrays below using day_calc
 REAL ::                                                                        &
