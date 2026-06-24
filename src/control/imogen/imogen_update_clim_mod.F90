@@ -44,6 +44,8 @@ USE radf_co2_mod, ONLY: radf_co2
 
 USE radf_non_co2_mod, ONLY: radf_non_co2
 
+USE radf_ch4_mod, ONLY: radf_ch4
+
 USE delta_temp_mod, ONLY: delta_temp
 
 USE pattern_scaling_mod, ONLY: pattern_scaling

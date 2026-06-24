@@ -308,7 +308,6 @@ CALL init_water_resources(nml_dir)
 
 ! Initialise two-tile urban schemes (not ancillary data) and must be called
 ! after init_radiation
-!DEPENDS ON: init_urban
 CALL init_urban(nml_dir)
 
 ! Initialise science fixes
