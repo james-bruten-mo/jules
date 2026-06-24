@@ -5,7 +5,11 @@
 ! *****************************COPYRIGHT**************************************
 
 MODULE init_mod
+
+IMPLICIT NONE
+
 CONTAINS
+
 SUBROUTINE init(nml_dir, crop_vars_data, crop_vars,                            &
                    psparms_data, psparms,                                      &
                    toppdm, top_pdm_data,                                       &
