@@ -58,6 +58,14 @@ USE jules_vegetation_mod, ONLY: l_prescsow
 
 USE ancil_info, ONLY: nsurft, nsoilt
 
+USE sow_mod, ONLY: sow
+
+USE emerge_mod, ONLY: emerge
+
+USE develop_mod, ONLY: develop
+
+USE partition_mod, ONLY: partition
+
 IMPLICIT NONE
 
 !-----------------------------------------------------------------------------
@@ -271,7 +279,6 @@ DO  n = 1,ncpft
     nonyield_diag_cpft(l,n)   = 0.0
 
     IF ( NINT(dvi(l,n)) == -2 .AND. crop_call == 0 ) THEN
-      ! DEPENDS ON: sow
       CALL sow(n, sm_levels, t_soil_soilt(l,m,:), sthu_soilt(l,m,:),           &
                smvcst_soilt(l,m,:),                                            &
                smvccl_soilt(l,m,:), dphotdt(i), sow_date_cpft(l,n),            &
@@ -285,7 +292,6 @@ DO  n = 1,ncpft
     dvi_prev1 = dvi(l,n)
 
     IF ( dvi(l,n) >= -1.0 .AND. dvi(l,n) < 0.0 ) THEN
-      ! DEPENDS ON: emerge
       CALL emerge(n, t_surft(l,n + nnpft), dvi(l,n))
       ! On the timestep where crop emerges, DVI is incremented twice
       ! This should be changed (kept in for the moment for bit
@@ -298,7 +304,6 @@ DO  n = 1,ncpft
     dvi_prev2 = dvi(l,n)
 
     IF ( dvi(l,n) >= 0.0 ) THEN
-      ! DEPENDS ON: develop
       CALL develop(n, t_surft(l,n + nnpft), phot(i), tt_veg_cpft(l,n),         &
                    tt_rep_cpft(l,n), dvi(l,n))
     END IF
@@ -321,7 +326,6 @@ DO  n = 1,ncpft
     !-------------------------------------------------------------------------
     IF ( dvi(l,n) >= initial_c_dvi(n) ) THEN
       IF (crop_call == 0) THEN
-        ! DEPENDS ON: partition
         CALL partition(n, npp_ft_acc(l,n + nnpft),                             &
                        dvi(l,n), rootc(l,n), harvc(l,n),                       &
                        reservec(l,n), nonyield_diag_cpft(l,n),                 &

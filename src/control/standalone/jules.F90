@@ -10,6 +10,8 @@ PROGRAM jules
 
 !$ USE omp_lib, ONLY: omp_get_max_threads
 
+USE standalone_control_mod, ONLY: standalone_control
+
 USE init_mod, ONLY: init
 
 USE io_constants, ONLY: max_file_name_len
@@ -72,6 +74,8 @@ USE cable_fields_mod, ONLY: progs_cbl_vars_data, progs_cbl_vars,               &
                             work_vars_data_cbl, work_vars_cbl
 USE imgn_drive_mod, ONLY: imgn_drive_data, imgn_drive
 USE imgn_vars_mod, ONLY: imgn_vars_data, imgn_vars
+USE imogen_update_clim_mod, ONLY: imogen_update_clim
+USE imogen_update_carb_mod, ONLY: imogen_update_carb
 
 IMPLICIT NONE
 
@@ -167,7 +171,6 @@ DO    !  timestep
   !-----------------------------------------------------------------------------
   IF ( l_imogen .AND. start_of_year ) THEN
     CALL update_prescribed_variables()   ! read in required variables
-    ! DEPENDS ON: imogen_update_clim
     CALL imogen_update_clim(progs, imgn_drive, imgn_vars, ainfo)
   END IF
 
@@ -192,8 +195,7 @@ DO    !  timestep
   !-----------------------------------------------------------------------------
   ! Call the main model science routine
   !-----------------------------------------------------------------------------
-  ! DEPENDS ON: control
-  CALL control(                                                                &
+  CALL standalone_control(                                                                &
   !   Scalar arguments (INTENT IN)
       timestep_number,                                                         &
   !   Forcing (INTENT IN)
@@ -218,7 +220,6 @@ DO    !  timestep
   !-----------------------------------------------------------------------------
   ! Update IMOGEN carbon if required
   !-----------------------------------------------------------------------------
-  ! DEPENDS ON: imogen_update_carb
   IF ( l_imogen .AND. end_of_year ) CALL imogen_update_carb(progs, imgn_vars)
 
   !-----------------------------------------------------------------------------

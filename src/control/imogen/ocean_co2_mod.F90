@@ -21,6 +21,8 @@ SUBROUTINE ocean_co2(                                                          &
   t_ocean_init,nfarray,d_ocean_atmos                                           &
 )
 
+USE response_mod, ONLY: response
+
 USE jules_print_mgr, ONLY:                                                     &
   jules_message,                                                               &
   jules_print
@@ -131,7 +133,6 @@ IF (year_run * ncallyr > nfarray) THEN
   CALL jules_print('ocean_co2',jules_message)
 END IF
 
-! DEPENDS ON: response
 CALL response(ncallyr,year_run,rs)
 
 d_ocean_atmos = 0.0

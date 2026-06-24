@@ -8,6 +8,13 @@
 !
 ! [Met Office Ref SC0237]
 !******************************COPYRIGHT**************************************
+
+MODULE radf_ch4_mod
+
+IMPLICIT NONE
+
+CONTAINS
+
 SUBROUTINE radf_ch4(ch4_ppbv, q_ch4)
 
 USE io_constants, ONLY: imogen_unit
@@ -169,4 +176,5 @@ overlap_val = 0.47 *                                                           &
                 + (5.31e-15 * ch4_ppbv * (ch4_ppbv * n2o_ppbv)** 1.52))
 
 END FUNCTION overlap
+END MODULE radf_ch4_mod
 #endif

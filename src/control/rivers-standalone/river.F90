@@ -33,6 +33,8 @@ USE model_time_mod, ONLY: end_of_run, oasis_time
 
 USE jules_print_mgr, ONLY: jules_message, jules_print
 
+USE rivers_control_mod, ONLY: rivers_control
+
 !TYPE definitions
 USE jules_fields_mod, ONLY: psparms_data, psparms,                             &
                             ainfo_data, ainfo,                                 &
@@ -141,8 +143,7 @@ DO    !  timestep
   !-----------------------------------------------------------------------------
   ! Call the main model science routine
   !-----------------------------------------------------------------------------
-  ! DEPENDS ON: control
-  CALL control(                                                                &
+  CALL rivers_control(                                                                &
      !TYPES containing field data (IN OUT)
      psparms, ainfo, progs, fluxes, rivers, wtrac_jls )
 
