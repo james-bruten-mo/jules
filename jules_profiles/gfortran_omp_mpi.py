@@ -16,7 +16,7 @@ compile_profile = {
     "min_compiler_version": "12",
     "fortran_compile_flags_common": fortran_compile_flags_common + werror,
     "fortran_compile_flags_override": {
-        Path("src/io/dump/read_dump_mod.f90"): fortran_compile_flags_common + ["-fallow-argument-mismatch"]
+        Path("src/io/dump/read_dump_mod.F90"): fortran_compile_flags_common + ["-fallow-argument-mismatch"]
     },
     "openmp": True,
 }
