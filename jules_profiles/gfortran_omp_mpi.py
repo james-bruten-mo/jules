@@ -21,4 +21,5 @@ compile_profile = {
             "compile_flags": fortran_compile_flags_common + ["-fallow-argument-mismatch"],
         },
     },
+    "fortran_pp_flags": ["-traditional", "-P"],
 }
